@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PaginatedEstablishmentsTable renders the table with updated font size 1`] = `
+<div>
+  <div
+    style="background: rgb(130, 199, 175); padding: 10px; margin-left: 50px; color: white;"
+  >
+    <h2>
+      Food Hygiene Ratings
+    </h2>
+    <table>
+      <tbody>
+        <tr>
+          <th
+            style="padding-bottom: 10px; text-align: left; font-size: 20px;"
+          >
+            Business Name
+          </th>
+          <th
+            style="padding-bottom: 10px; text-align: left; font-size: 20px;"
+          >
+            Rating Value
+          </th>
+        </tr>
+        <tr
+          style="font-size: 20px;"
+        >
+          <td>
+            McDonald's
+          </td>
+          <td>
+            4
+          </td>
+        </tr>
+        <tr
+          style="font-size: 20px;"
+        >
+          <td>
+            Burger King
+          </td>
+          <td>
+            4
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <nav>
+      <button
+        disabled=""
+        style="margin: 0px 5px;"
+        type="button"
+      >
+        -
+      </button>
+      1
+      <button
+        style="margin: 0px 5px;"
+        type="button"
+      >
+        +
+      </button>
+    </nav>
+  </div>
+</div>
+`;
