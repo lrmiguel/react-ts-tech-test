@@ -19,41 +19,33 @@ export const PaginatedEstablishmentsTable = () => {
   >([]);
   const [pageNum, setPageNum] = useState(1);
   const [pageCount] = useState(100);
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    getEstablishmentRatings(pageNum).then(
-      (result) => {
-        setEstablishments(result?.establishments);
-      },
-      (error) => {
-        setError(error);
-      }
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    fetchEstablishmentRatings();
+    // eslint-disable-next-line
   }, []);
 
   async function handlePreviousPage() {
     pageNum > 1 && setPageNum(pageNum - 1);
-    getEstablishmentRatings(pageNum).then(
-      (result) => {
-        setEstablishments(result.establishments);
-      },
-      (error) => {
-        setError(error);
-      }
-    );
+    fetchEstablishmentRatings();
   }
 
   async function handleNextPage() {
     pageNum < pageCount && setPageNum(pageNum + 1);
-    getEstablishmentRatings(pageNum).then(
-      (result) => {
-        setEstablishments(result.establishments);
-      },
-      (error) => {
-        setError(error);
-      }
-    );
+    fetchEstablishmentRatings();
+  }
+  
+  async function fetchEstablishmentRatings() {
+    setLoading(true);
+    try {
+      const results = await getEstablishmentRatings(pageNum);
+      setEstablishments(results.establishments);
+    } catch (error: any) {
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
   }
 
   if (error) {
@@ -62,7 +54,7 @@ export const PaginatedEstablishmentsTable = () => {
     return (
       <div style={tableStyle}>
         <h2>Food Hygiene Ratings</h2>
-        <EstablishmentsTable establishments={establishments} />
+        <EstablishmentsTable establishments={establishments} loading={loading} />
         <EstablishmentsTableNavigation
           pageNum={pageNum}
           pageCount={pageCount}
