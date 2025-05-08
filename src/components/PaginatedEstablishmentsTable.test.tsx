@@ -1,4 +1,3 @@
-import React from "react";
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import { PaginatedEstablishmentsTable } from "./PaginatedEstablishmentsTable";
 import * as ratingsAPI from "../api/ratingsAPI";
@@ -28,7 +27,7 @@ describe("PaginatedEstablishmentsTable", () => {
         expect(container).toMatchSnapshot();
     });
     
-    /* Unit and Integration Tests */
+    /* Unit Tests */
     it("renders loading state initially", async () => {
         render(<PaginatedEstablishmentsTable />);
         expect(screen.getByText("Loading...")).toBeInTheDocument();

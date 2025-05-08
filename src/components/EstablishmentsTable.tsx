@@ -23,7 +23,7 @@ export const EstablishmentsTable: React.FC<EstablishmentsTableNavigationType> = 
         </tr>
         {loading ? (
             <tr>
-              <td colSpan={2}>Loading...</td>
+              <td>Loading...</td>
             </tr>
           ) : (
             establishments &&
