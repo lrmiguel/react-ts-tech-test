@@ -1,6 +1,7 @@
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import { PaginatedEstablishmentsTable } from "./PaginatedEstablishmentsTable";
 import * as ratingsAPI from "../api/ratingsAPI";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 jest.mock("../api/ratingsAPI");
 
@@ -9,8 +10,23 @@ const mockData = [
     { BusinessName: "Burger King", RatingValue: "4" },
 ];
 
-(ratingsAPI.getEstablishmentRatings as jest.Mock).mockResolvedValue({ establishments: mockData });
+const mockSelectedData = [
+    { BusinessName: "14 Hills", RatingValue: "5" },
+    { BusinessName: "Acai Berry The Amazon Boost", RatingValue: "5" },
+];
 
+const createQueryClient = () => {
+    return new QueryClient({
+        defaultOptions: {
+          queries: {
+            retry: false,
+            cacheTime: 0, // disable cache
+            staleTime: 0,
+          },
+        },
+      });
+}
+        
 describe("PaginatedEstablishmentsTable", () => {
     beforeEach(() => {
         (ratingsAPI.getEstablishmentRatings as jest.Mock).mockImplementation(() => {
@@ -18,24 +34,44 @@ describe("PaginatedEstablishmentsTable", () => {
                 setTimeout(() => resolve({ establishments: mockData }), 100)
             );
         });
+        (ratingsAPI.getEstablishmentsByAuthority as jest.Mock).mockImplementation(() => {
+            return new Promise((resolve) =>
+                setTimeout(() => resolve({ establishments: mockSelectedData }), 100)
+            );
+        });
     });
 
     /* Snapshot Tests */
     it("renders the table with updated font size", async () => {
-        const { container } = render(<PaginatedEstablishmentsTable />);
+        const queryClient = createQueryClient();
+        const { container } = render(
+            <QueryClientProvider client={queryClient}>
+                <PaginatedEstablishmentsTable />
+            </QueryClientProvider>
+        );
         await screen.findByText("McDonald's");
         expect(container).toMatchSnapshot();
     });
     
     /* Unit Tests */
     it("renders loading state initially", async () => {
-        render(<PaginatedEstablishmentsTable />);
-        expect(screen.getByText("Loading...")).toBeInTheDocument();
+        const queryClient = createQueryClient();
+        render(
+            <QueryClientProvider client={queryClient}>
+                <PaginatedEstablishmentsTable />
+            </QueryClientProvider>
+        );
+        expect(await screen.findByText("Loading...")).toBeInTheDocument();
         expect(await screen.findByText("McDonald's")).toBeInTheDocument();
     });
 
     it("shows loading when navigating to next page", async () => {
-        render(<PaginatedEstablishmentsTable />);
+        const queryClient = createQueryClient();
+        render(
+            <QueryClientProvider client={queryClient}>
+                <PaginatedEstablishmentsTable />
+            </QueryClientProvider>
+        );
         await screen.findByText("McDonald's");
         fireEvent.click(screen.getByText("+"));
         expect(await screen.findByText("Loading...")).toBeInTheDocument();
@@ -46,11 +82,16 @@ describe("PaginatedEstablishmentsTable", () => {
         expect(await screen.findByText("McDonald's")).toBeInTheDocument();
     });
 
-    it("shows loading when navigating to previous page", async () => {
-        render(<PaginatedEstablishmentsTable />);
+    it("uses cache when navigating to previous page", async () => {
+        const queryClient = createQueryClient();
+        render(
+            <QueryClientProvider client={queryClient}>
+                <PaginatedEstablishmentsTable />
+            </QueryClientProvider>
+        );
         await screen.findByText("McDonald's");
 
-        fireEvent.click(screen.getByText("+"));
+        fireEvent.click(await screen.findByText("+"));
         expect(await screen.findByText("Loading...")).toBeInTheDocument();
         await act(() => new Promise((resolve) => setTimeout(resolve, 100)));
         expect(screen.queryByText("Loading...")).not.toBeInTheDocument();
@@ -59,9 +100,20 @@ describe("PaginatedEstablishmentsTable", () => {
         // Simulate going back to the previous page
 
         fireEvent.click(screen.getByText("-"));
-        expect(await screen.findByText("Loading...")).toBeInTheDocument();
-        await act(() => new Promise((resolve) => setTimeout(resolve, 100)));
         expect(screen.queryByText("Loading...")).not.toBeInTheDocument();
+        await act(() => new Promise((resolve) => setTimeout(resolve, 100)));
         expect(await screen.findByText("McDonald's")).toBeInTheDocument();
     });
+
+    it("filters list by selected authority", async () => {
+        const queryClient = createQueryClient();
+        render(
+            <QueryClientProvider client={queryClient}>
+                <PaginatedEstablishmentsTable authority="95" />
+            </QueryClientProvider>
+        );
+        expect(await screen.findByText("Loading...")).toBeInTheDocument();
+        expect(await screen.findByText("Acai Berry The Amazon Boost")).toBeInTheDocument();
+    });
+    
 })

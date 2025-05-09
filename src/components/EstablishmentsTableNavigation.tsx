@@ -1,8 +1,9 @@
 const buttonStyle = {
-  margin: "0 5px",
+  margin: "10px 5px",
 };
 
 type EstablishmentsTableNavigationType = {
+  loading: boolean;
   pageNum: number;
   pageCount: number;
   onPreviousPage: () => void;
@@ -12,14 +13,14 @@ type EstablishmentsTableNavigationType = {
 export const EstablishmentsTableNavigation = (
   props: EstablishmentsTableNavigationType
 ) => {
-  const { pageNum, pageCount, onPreviousPage, onNextPage } = props;
+  const { loading, pageNum, pageCount, onPreviousPage, onNextPage } = props;
   return (
     <nav>
       {
         <button
           type="button"
           style={buttonStyle}
-          disabled={pageNum <= 1}
+          disabled={pageNum <= 1 || loading}
           onClick={onPreviousPage}
         >
           -
@@ -30,7 +31,7 @@ export const EstablishmentsTableNavigation = (
         <button
           type="button"
           style={buttonStyle}
-          disabled={pageNum >= pageCount}
+          disabled={pageNum >= pageCount || loading}
           onClick={onNextPage}
         >
           +
