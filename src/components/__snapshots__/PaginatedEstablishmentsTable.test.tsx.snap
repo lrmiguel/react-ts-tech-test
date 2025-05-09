@@ -3,7 +3,7 @@
 exports[`PaginatedEstablishmentsTable renders the table with updated font size 1`] = `
 <div>
   <div
-    style="background: rgb(130, 199, 175); padding: 10px; margin-left: 50px; color: white;"
+    style="background: rgb(130, 199, 175); color: white; margin-left: 50px; padding: 10px 20px; max-width: 50rem; height: 28rem;"
   >
     <h2>
       Food Hygiene Ratings
@@ -12,18 +12,18 @@ exports[`PaginatedEstablishmentsTable renders the table with updated font size 1
       <tbody>
         <tr>
           <th
-            style="padding-bottom: 10px; text-align: left; font-size: 20px;"
+            style="font-size: 20px; text-align: left; padding-bottom: 10px; width: 38rem;"
           >
             Business Name
           </th>
           <th
-            style="padding-bottom: 10px; text-align: left; font-size: 20px;"
+            style="font-size: 20px; text-align: left; padding-bottom: 10px;"
           >
             Rating Value
           </th>
         </tr>
         <tr
-          style="font-size: 20px;"
+          style="font-size: 20px; height: 1.8rem;"
         >
           <td>
             McDonald's
@@ -33,7 +33,7 @@ exports[`PaginatedEstablishmentsTable renders the table with updated font size 1
           </td>
         </tr>
         <tr
-          style="font-size: 20px;"
+          style="font-size: 20px; height: 1.8rem;"
         >
           <td>
             Burger King
@@ -47,14 +47,14 @@ exports[`PaginatedEstablishmentsTable renders the table with updated font size 1
     <nav>
       <button
         disabled=""
-        style="margin: 0px 5px;"
+        style="margin: 10px 5px;"
         type="button"
       >
         -
       </button>
       1
       <button
-        style="margin: 0px 5px;"
+        style="margin: 10px 5px;"
         type="button"
       >
         +

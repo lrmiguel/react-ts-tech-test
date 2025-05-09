@@ -3,9 +3,9 @@ import { EstablishmentsTableRow } from "./EstablishmentsTableRow";
 import PropTypes from "prop-types";
 
 const headerStyle: { [key: string]: string | number } = {
-  paddingBottom: "10px",
-  textAlign: "left",
   fontSize: "20px",
+  textAlign: "left",
+  paddingBottom: "10px",
 };
 
 type EstablishmentsTableNavigationType = {
@@ -17,29 +17,29 @@ export const EstablishmentsTable: React.FC<EstablishmentsTableNavigationType> = 
   return (
     <table>
       <tbody>
-        <tr>
-          <th style={headerStyle}>Business Name</th>
-          <th style={headerStyle}>Rating Value</th>
+      <tr>
+        <th style={{ ...headerStyle, width: "38rem" }}>Business Name</th>
+        <th style={{ ...headerStyle }}>Rating Value</th>
+      </tr>
+      {loading ? (
+        <tr style={{ fontSize: '20px', height: '19.15rem' }}>
+          <td colSpan={2} style={{ fontWeight: 'bold', textAlign: 'center'}}>Loading...</td>
         </tr>
-        {loading ? (
-            <tr>
-              <td>Loading...</td>
-            </tr>
-          ) : (
-            establishments &&
-            establishments?.map(
-              (
-                establishment: { [key: string]: string } | null | undefined,
-                index: React.Key | null | undefined
-              ) => (
-                <EstablishmentsTableRow
-                  key={index}
-                  establishment={establishment}
-                />
-              )
-            )
+        ) : (
+        establishments &&
+        establishments?.map(
+          (
+          establishment: { [key: string]: string } | null | undefined,
+          index: React.Key | null | undefined
+          ) => (
+          <EstablishmentsTableRow
+            key={index}
+            establishment={establishment}
+          />
           )
-        }
+        )
+        )
+      }
       </tbody>
     </table>
   );

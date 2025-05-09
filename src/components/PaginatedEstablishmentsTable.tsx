@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { EstablishmentsTable } from "./EstablishmentsTable";
 import { EstablishmentsTableNavigation } from "./EstablishmentsTableNavigation";
-import { EstablishmentsType, getEstablishmentRatings, getEstablishmentsByAuthority } from "../api/ratingsAPI";
+import { getEstablishmentRatings, getEstablishmentsByAuthority } from "../api/ratingsAPI";
 import { useQuery } from "react-query";
 
 const tableStyle = {
