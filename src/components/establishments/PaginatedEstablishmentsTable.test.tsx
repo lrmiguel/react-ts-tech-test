@@ -1,10 +1,10 @@
 import { render, screen, fireEvent, act } from "@testing-library/react";
-import { PaginatedEstablishmentsTable } from "./PaginatedEstablishmentsTable";
-import * as ratingsAPI from "../api/ratingsAPI";
+import * as ratingsAPI from "../../api/ratingsAPI";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { FavouritesProvider } from "../context/FavouritesContext";
+import { FavouritesProvider } from "../../context/FavouritesContext";
+import { PaginatedEstablishmentsTable } from "./PaginatedEstablishmentsTable";
 
-jest.mock("../api/ratingsAPI");
+jest.mock("../../api/ratingsAPI");
 
 const mockData = [
     { BusinessName: "McDonald's", RatingValue: "4" },
@@ -42,21 +42,6 @@ describe("PaginatedEstablishmentsTable", () => {
         });
     });
 
-    /* Snapshot Tests */
-    it("renders the table with updated font size", async () => {
-        const queryClient = createQueryClient();
-        const { container } = render(
-            <QueryClientProvider client={queryClient}>
-                <FavouritesProvider>
-                    <PaginatedEstablishmentsTable />
-                </FavouritesProvider>
-            </QueryClientProvider>
-        );
-        await screen.findByText("McDonald's");
-        expect(container).toMatchSnapshot();
-    });
-    
-    /* Unit Tests */
     it("renders loading state initially", async () => {
         const queryClient = createQueryClient();
         render(

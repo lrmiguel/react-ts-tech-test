@@ -40,6 +40,27 @@ describe("EstablishmentDetailPage", () => {
     afterEach(() => {
         jest.clearAllMocks();
     });
+    
+    it("matches snapshot", async () => {
+        const mockData = {
+            BusinessName: "Test Business",
+            AddressLine1: "123 Test Street", 
+            AddressLine2: "Test Area",
+            AddressLine3: "",
+            AddressLine4: "",
+            RatingValue: "5",
+            RatingDate: "2023-01-01T00:00:00",
+        };
+        (ratingsAPI.getEstablishmentById as jest.Mock).mockResolvedValue(mockData);
+
+        const { container } = renderWithProviders("123", createQueryClient());
+
+        await waitFor(() => {
+            expect(screen.getByText("Test Business")).toBeInTheDocument();
+        });
+
+        expect(container).toMatchSnapshot();
+    });
 
     it("renders loading state initially", () => {
         (ratingsAPI.getEstablishmentById as jest.Mock).mockReturnValue(new Promise(() => {}));

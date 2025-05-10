@@ -1,5 +1,5 @@
-import { useFavourites } from "../context/FavouritesContext";
-import { truncate } from "../utils/string.utils";
+import { useFavourites } from "../../context/FavouritesContext";
+import { truncate } from "../../utils/string.utils";
 
 const layoutStyle: React.CSSProperties = {
     background: "#82C7AF",

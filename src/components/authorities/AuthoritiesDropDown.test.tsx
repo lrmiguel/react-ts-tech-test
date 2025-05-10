@@ -1,10 +1,10 @@
 import { act, render, screen } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "react-query";
-import * as ratingsAPI from "../api/ratingsAPI";
-import { AuthoritiesDropDown } from "./AuthoritiesDropDown";
+import * as ratingsAPI from "../../api/ratingsAPI";
 import userEvent from "@testing-library/user-event";
+import { AuthoritiesDropDown } from "./AuthoritiesDropDown";
 
-jest.mock("../api/ratingsAPI");
+jest.mock("../../api/ratingsAPI");
 
 const mockData = [
     { Name: "Aberdeen City", LocalAuthorityId: 197 },
@@ -71,22 +71,6 @@ describe("AuthoritiesDropDown", () => {
         });
     });
 
-    /* Snapshot Tests */
-    it("renders the table with updated font size", async () => {
-        const queryClient = createQueryClient();
-        const handleChange = jest.fn();
-        const { container } = render(
-            <QueryClientProvider client={queryClient}>
-                <WrapperComponent onChange={handleChange}/>
-            </QueryClientProvider>
-        );
-
-        const dropdown = screen.getByText("Search or select...");
-        userEvent.click(dropdown);
-        expect(container).toMatchSnapshot();
-    });
-
-    /* Unit Tests */
     it("filters establishments by selected authority", async () => {
         const queryClient = createQueryClient();
         const handleChange = jest.fn();

@@ -1,7 +1,7 @@
-import { PaginatedEstablishmentsTable } from "./PaginatedEstablishmentsTable";
-import { AuthoritiesDropDown } from "./AuthoritiesDropDown";
+import { PaginatedEstablishmentsTable } from "../components/establishments/PaginatedEstablishmentsTable";
 import { useState } from "react";
 import PageLayout from "./PageLayout";
+import { AuthoritiesDropDown } from "../components/authorities/AuthoritiesDropDown";
 
 const HomePage = () => {
   const [selectedAuthority, setSelectedAuthority] = useState<string | null>(null);

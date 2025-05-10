@@ -1,9 +1,9 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { FavouritesProvider, useFavourites } from "../context/FavouritesContext";
+import { FavouritesProvider, useFavourites } from "../../context/FavouritesContext";
 import FavouritesTable from "./FavouritesTable";
 
-jest.mock("../context/FavouritesContext", () => {
-    const originalModule = jest.requireActual("../context/FavouritesContext");
+jest.mock("../../context/FavouritesContext", () => {
+    const originalModule = jest.requireActual("../../context/FavouritesContext");
     return {
         ...originalModule,
         useFavourites: jest.fn(),

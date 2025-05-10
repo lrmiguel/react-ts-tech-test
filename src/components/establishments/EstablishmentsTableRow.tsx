@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { useFavourites } from "../context/FavouritesContext";
-import { truncate } from "../utils/string.utils";
+import { useFavourites } from "../../context/FavouritesContext";
+import { truncate } from "../../utils/string.utils";
 
 const tableRowsStyle = {
   fontSize: "20px",

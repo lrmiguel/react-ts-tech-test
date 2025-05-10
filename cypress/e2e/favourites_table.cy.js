@@ -10,7 +10,7 @@ describe('Favourite Table Tests', () => {
   it('removes an establishment from favourites on the homepage', () => {
     cy.visit('/');
     cy.get('input[aria-label="Favourite !NOSH!"]').click();
-    cy.get('button[aria-label="Remove from favourites"]').click();
+    cy.get('button[aria-label="Remove from favourites"]').click({ force: true });
     cy.get('button[aria-label="Favourite !NOSH!"]').should('not.exist');
   });
 

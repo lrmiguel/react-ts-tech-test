@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useRef } from "react";
 import Select, { components, MenuListProps } from "react-select";
 import { useInfiniteQuery, useQuery } from 'react-query';
-import { getAuthorities, getAuthoritiesByName } from "../api/ratingsAPI";
+import { getAuthorities, getAuthoritiesByName } from "../../api/ratingsAPI";
 
 const selectStyle = {
     color: 'white',

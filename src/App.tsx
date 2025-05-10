@@ -1,7 +1,7 @@
 import { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import HomePage from "./components/HomePage";
-import EstablishmentDetailPage from "./components/EstablishmentDetailPage";
+import HomePage from "./pages/HomePage";
+import EstablishmentDetailPage from "./pages/EstablishmentDetailPage";
 
 class App extends Component {
   render() {

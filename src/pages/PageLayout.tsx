@@ -1,6 +1,6 @@
 import React from "react";
 import Background from "../static/logo.svg"; // adjust the path if needed
-import FavouritesTable from "./FavouritesTable";
+import FavouritesTable from "../components/favourites/FavouritesTable";
 
 const layoutStyle: React.CSSProperties = {
     alignItems: "center", 
