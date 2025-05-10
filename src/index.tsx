@@ -3,10 +3,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { FavouritesProvider } from './context/FavouritesContext';
+
+const queryClient = new QueryClient();
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <QueryClientProvider client={queryClient}>
+      <FavouritesProvider>
+        <App />
+      </FavouritesProvider>
+    </QueryClientProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

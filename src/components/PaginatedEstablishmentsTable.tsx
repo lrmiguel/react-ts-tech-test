@@ -7,10 +7,9 @@ import { useQuery } from "react-query";
 const tableStyle = {
   background: "#82C7AF",
   color: "white",
-  marginLeft: "50px",
   padding: "10px 20px",
-  maxWidth: "50rem",
-  height: "28rem",
+  width: "50rem",
+  height: "29rem",
 };
 
 interface EstablishmentsTableProps {

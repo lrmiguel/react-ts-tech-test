@@ -3,7 +3,7 @@
 exports[`AuthoritiesDropDown renders the table with updated font size 1`] = `
 <div>
   <div
-    style="color: white; font-size: 20px; margin-left: 50px; max-width: calc(50rem + 40px);"
+    style="color: white; font-size: 20px; width: calc(50rem + 40px);"
   >
     <label
       for="authoritiesDropDown"
@@ -42,7 +42,7 @@ exports[`AuthoritiesDropDown renders the table with updated font size 1`] = `
         </span>
       </span>
       <div
-        class="css-1a81jjt-control"
+        class="css-13ercb9-control"
       >
         <div
           class="css-hlgwow"

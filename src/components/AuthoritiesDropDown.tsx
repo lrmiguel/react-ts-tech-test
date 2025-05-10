@@ -6,8 +6,7 @@ import { getAuthorities, getAuthoritiesByName } from "../api/ratingsAPI";
 const selectStyle = {
     color: 'white',
     fontSize: '20px',
-    marginLeft: '50px',
-    maxWidth: 'calc(50rem + 40px)',
+    width: 'calc(50rem + 40px)',
 };
 const loadMoreStyle: React.CSSProperties = {
     color: '#4CAF50',
@@ -25,7 +24,6 @@ const dropDownStyle = {
         color: 'white',
         fontSize: '20px',
         margin: '10px 0 10px 0px',
-        width: '100%',
         padding: '5px 10px',
     }),
     menu: (styles: any) => ({
@@ -34,12 +32,11 @@ const dropDownStyle = {
         borderRadius: '6px',
         boxShadow: '0 2px 12px rgba(0,0,0,0.1)',
         padding: '10px',
-        // maxHeight: '300px',
     }),
     option: (styles: any, { isFocused, isSelected }: any) => ({
         ...styles,
         backgroundColor: isSelected ? '#4CAF50' : isFocused ? '#E8F5E9' : undefined,
-        color: isSelected ? 'white' : 'black',
+        color: isSelected ? 'white' : isFocused ? 'darkgreen' : 'black',
         padding: '10px',
     }),
     singleValue: (styles: any) => ({

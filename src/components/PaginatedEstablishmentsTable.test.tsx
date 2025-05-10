@@ -2,6 +2,7 @@ import { render, screen, fireEvent, act } from "@testing-library/react";
 import { PaginatedEstablishmentsTable } from "./PaginatedEstablishmentsTable";
 import * as ratingsAPI from "../api/ratingsAPI";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { FavouritesProvider } from "../context/FavouritesContext";
 
 jest.mock("../api/ratingsAPI");
 
@@ -34,7 +35,7 @@ describe("PaginatedEstablishmentsTable", () => {
                 setTimeout(() => resolve({ establishments: mockData }), 100)
             );
         });
-        (ratingsAPI.getEstablishmentsByAuthority as jest.Mock).mockImplementation(() => {
+        (ratingsAPI.getEstablishmentsByAuthority as jest.Mock).mockImplementation((authority) => {
             return new Promise((resolve) =>
                 setTimeout(() => resolve({ establishments: mockSelectedData }), 100)
             );
@@ -46,7 +47,9 @@ describe("PaginatedEstablishmentsTable", () => {
         const queryClient = createQueryClient();
         const { container } = render(
             <QueryClientProvider client={queryClient}>
-                <PaginatedEstablishmentsTable />
+                <FavouritesProvider>
+                    <PaginatedEstablishmentsTable />
+                </FavouritesProvider>
             </QueryClientProvider>
         );
         await screen.findByText("McDonald's");
@@ -58,7 +61,9 @@ describe("PaginatedEstablishmentsTable", () => {
         const queryClient = createQueryClient();
         render(
             <QueryClientProvider client={queryClient}>
-                <PaginatedEstablishmentsTable />
+                <FavouritesProvider>
+                    <PaginatedEstablishmentsTable />
+                </FavouritesProvider>
             </QueryClientProvider>
         );
         expect(await screen.findByText("Loading...")).toBeInTheDocument();
@@ -69,7 +74,9 @@ describe("PaginatedEstablishmentsTable", () => {
         const queryClient = createQueryClient();
         render(
             <QueryClientProvider client={queryClient}>
-                <PaginatedEstablishmentsTable />
+                <FavouritesProvider>
+                    <PaginatedEstablishmentsTable />
+                </FavouritesProvider>
             </QueryClientProvider>
         );
         await screen.findByText("McDonald's");
@@ -86,7 +93,9 @@ describe("PaginatedEstablishmentsTable", () => {
         const queryClient = createQueryClient();
         render(
             <QueryClientProvider client={queryClient}>
-                <PaginatedEstablishmentsTable />
+                <FavouritesProvider>
+                    <PaginatedEstablishmentsTable />
+                </FavouritesProvider>
             </QueryClientProvider>
         );
         await screen.findByText("McDonald's");
@@ -109,7 +118,9 @@ describe("PaginatedEstablishmentsTable", () => {
         const queryClient = createQueryClient();
         render(
             <QueryClientProvider client={queryClient}>
-                <PaginatedEstablishmentsTable authority="95" />
+                <FavouritesProvider>
+                    <PaginatedEstablishmentsTable authority="95" />
+                </FavouritesProvider>
             </QueryClientProvider>
         );
         expect(await screen.findByText("Loading...")).toBeInTheDocument();

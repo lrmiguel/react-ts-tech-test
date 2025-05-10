@@ -18,12 +18,13 @@ export const EstablishmentsTable: React.FC<EstablishmentsTableNavigationType> = 
     <table>
       <tbody>
       <tr>
-        <th style={{ ...headerStyle, width: "38rem" }}>Business Name</th>
+        <th style={{ ...headerStyle, paddingRight: "30px"}}>Fav</th>
+        <th style={{ ...headerStyle, width: "37.5rem" }}>Business Name</th>
         <th style={{ ...headerStyle }}>Rating Value</th>
       </tr>
       {loading ? (
         <tr style={{ fontSize: '20px', height: '19.15rem' }}>
-          <td colSpan={2} style={{ fontWeight: 'bold', textAlign: 'center'}}>Loading...</td>
+          <td colSpan={3} style={{ fontWeight: 'bold', textAlign: 'center'}}>Loading...</td>
         </tr>
         ) : (
         establishments &&
