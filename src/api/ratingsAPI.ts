@@ -20,6 +20,16 @@ export type EstablishmentsType = {
   links: LinkType[];
 };
 
+export type EstablishmentDetailType = {
+  AddressLine1: string;
+  AddressLine2: string;
+  AddressLine3: string;
+  AddressLine4: string;
+  BusinessName: string;
+  RatingDate: string;
+  RatingValue: string;
+}
+
 export type AuthorityType = {
   Name: string;
   LocalAuthorityId: number;
@@ -47,7 +57,16 @@ export function getEstablishmentsByAuthority(
   return fetch(
     `http://api.ratings.food.gov.uk/Establishments?localAuthorityId=${authority}&pageSize=10&pageNumber=${pageNum}`,
     { headers: { "x-api-version": "2" } }
-  ).then((res) => res.json())
+  ).then((res) => res.json());
+}
+
+export function getEstablishmentById(
+  id: string,
+): Promise<EstablishmentDetailType> {
+  return fetch(
+    `http://api.ratings.food.gov.uk/Establishments/${id}`,
+    { headers: { "x-api-version": "2" } }
+  ).then((res) => res.json());
 }
 
 export function getAuthorities(
@@ -56,7 +75,7 @@ export function getAuthorities(
   return fetch(
     `http://api.ratings.food.gov.uk/Authorities/basic/${pageNum}/10`,
     { headers: { "x-api-version": "2" } }
-  ).then((res) => res.json())
+  ).then((res) => res.json());
 }
 
 export function getAuthoritiesByName(
@@ -66,5 +85,5 @@ export function getAuthoritiesByName(
   return fetch(
     `http://api.ratings.food.gov.uk/Authorities?name=${name}`,
     { headers: { "x-api-version": "2" } }
-  ).then((res) => res.json())
+  ).then((res) => res.json());
 }
