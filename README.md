@@ -19,6 +19,10 @@ This is Convex React TypeScript Tech Test.
 
 ## Improvements
 
+- Appearance
+![Preview of Improved Home Page](public/improved-preview-1.png)
+![Preview of Details Page](public/improved-preview-2.png)
+
 - Increased table font size
 - Added:
   - **Loading states** for better UX
