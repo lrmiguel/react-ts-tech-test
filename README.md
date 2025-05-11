@@ -40,22 +40,24 @@ This is Convex React TypeScript Tech Test.
 - **Table Component**
     - Renders table with correct columns and data.
     - Displays loading state when data is being fetched.
-    - Shows empty state when no data is available.
-    - Handles row click to navigate to details page.
+    - Uses cache when navigating to previous page.
+    - Filters list by selected authority.
 
 - **Authorities Dropdown Filter**
     - Renders all available authorities.
-    - Filters establishments based on selected authority.
+    - Selects authority id properly
+    - Loads more authorities in infinite scroll mode.
+    - Filters authorities based on user input
 
 - **Favourites Table**
-    - Adds and removes establishments from favourites.
-    - Persists favourites in local storage.
-    - Displays correct favourite status for each establishment.
+    - Renders nothing when there are no favourites.
+    - Renders a list of favourites.
+    - Removes favourites properly.
 
 - **Establishment Details Page**
     - Fetches and displays establishment details.
     - Handles loading and error states.
-    - Allows adding/removing from favourites.
+    - Navigates back to the home page properly.
 
 ### Snapshot Tests
 
@@ -66,6 +68,9 @@ This is Convex React TypeScript Tech Test.
 ### Cypress E2E Tests
 
 - Loads main page and displays establishments table.
+- Shows loading state properly.
+- Uses cache for previously fetched data.
 - Filters establishments by authority.
 - Navigates to establishment details page.
-- Adds and removes establishments from favourites.
+- Adds and removes establishments from favourites at home page.
+- Adds and removes establishments from favourites at details page.

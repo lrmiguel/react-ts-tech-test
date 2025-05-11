@@ -71,7 +71,7 @@ describe("AuthoritiesDropDown", () => {
         });
     });
 
-    it("filters establishments by selected authority", async () => {
+    it("selects authority id properly", async () => {
         const queryClient = createQueryClient();
         const handleChange = jest.fn();
         render(
