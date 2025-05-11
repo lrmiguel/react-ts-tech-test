@@ -28,4 +28,40 @@ This is Convex React TypeScript Tech Test.
   - `useQuery` for API response **caching mechanism** and **retries**
   - Establishment details page
   - Favourites table
-- Implemented responsive design fixes
+
+## Tests
+
+### Unit Tests
+
+- **Table Component**
+    - Renders table with correct columns and data.
+    - Displays loading state when data is being fetched.
+    - Shows empty state when no data is available.
+    - Handles row click to navigate to details page.
+
+- **Authorities Dropdown Filter**
+    - Renders all available authorities.
+    - Filters establishments based on selected authority.
+
+- **Favourites Table**
+    - Adds and removes establishments from favourites.
+    - Persists favourites in local storage.
+    - Displays correct favourite status for each establishment.
+
+- **Establishment Details Page**
+    - Fetches and displays establishment details.
+    - Handles loading and error states.
+    - Allows adding/removing from favourites.
+
+### Snapshot Tests
+
+- Table renders correctly with sample data.
+- Details page matches expected UI.
+- Dropdown filter renders as expected.
+
+### Cypress E2E Tests
+
+- Loads main page and displays establishments table.
+- Filters establishments by authority.
+- Navigates to establishment details page.
+- Adds and removes establishments from favourites.

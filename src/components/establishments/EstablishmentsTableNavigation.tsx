@@ -1,6 +1,4 @@
-const buttonStyle = {
-  margin: "10px 5px",
-};
+import styles from "./EstablishmentsTableNavigation.module.css";
 
 type EstablishmentsTableNavigationType = {
   loading: boolean;
@@ -19,7 +17,7 @@ export const EstablishmentsTableNavigation = (
       {
         <button
           type="button"
-          style={buttonStyle}
+          className={styles.buttonStyle}
           disabled={pageNum <= 1 || loading}
           onClick={onPreviousPage}
         >
@@ -30,7 +28,7 @@ export const EstablishmentsTableNavigation = (
       {
         <button
           type="button"
-          style={buttonStyle}
+          className={styles.buttonStyle}
           disabled={pageNum >= pageCount || loading}
           onClick={onNextPage}
         >

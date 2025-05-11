@@ -1,0 +1,56 @@
+.button {
+    background-color: #82C7AF;
+    border: 1px solid green;
+    border-radius: 4px;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 5px;
+    width: 5rem
+}
+
+.layout {
+    background: #82C7AF;
+    flex-grow: 1;
+    font-size: 20px;
+    margin: 10px 5px 10px 5px;
+    max-height: 400px;
+    padding: 10px;
+    text-align: left;
+    overflow-y: auto;
+    width: 30rem
+}
+
+/* WebKit browsers (Chrome, Safari, Edge) */
+.layout::-webkit-scrollbar {
+  width: 8px;
+}
+
+.layout::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 4px;
+}
+
+.layout::-webkit-scrollbar-thumb {
+  background-color: #6aa893;
+  border-radius: 4px;
+  border: 2px solid green;
+}
+
+/* Firefox */
+.layout {
+  scrollbar-width: thin; /* auto | thin | none */
+  scrollbar-color: #6aa893 green;
+}
+
+.header { 
+    background: #82C7AF;
+    height: 10px; 
+    padding: 10px; 
+    position: sticky; 
+    top: -10px;
+}
+
+.tbody {
+    padding: 0 10px
+}

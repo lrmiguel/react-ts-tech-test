@@ -1,4 +1,6 @@
+// due to periods the ratings API gets slower
 Cypress.config('defaultCommandTimeout', 60000);
+
 describe('Paginated Establishments Table E2E', () => {
     it('displays loading on page change', () => {
       cy.visit('/');

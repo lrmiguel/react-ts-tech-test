@@ -1,0 +1,29 @@
+.buttonStyle {
+    background-color: #82C7AF;
+    border: 1px solid green;
+    border-radius: 4px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+    padding: 5px;
+    width: 10rem;
+}
+
+.layoutStyle {
+    background: #82C7AF;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    justify-content: space-between;
+    height: 25rem;
+    margin-top: 30px;
+    padding: 10px 20px;
+    width: 30rem;
+}
+
+.loading { 
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}

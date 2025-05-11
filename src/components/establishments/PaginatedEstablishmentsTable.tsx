@@ -3,14 +3,7 @@ import { EstablishmentsTable } from "./EstablishmentsTable";
 import { EstablishmentsTableNavigation } from "./EstablishmentsTableNavigation";
 import { getEstablishmentRatings, getEstablishmentsByAuthority } from "../../api/ratingsAPI";
 import { useQuery } from "react-query";
-
-const tableStyle = {
-  background: "#82C7AF",
-  color: "white",
-  padding: "10px 20px",
-  width: "50rem",
-  height: "29rem",
-};
+import styles from "./PaginatedEstablishmentsTable.module.css";
 
 interface EstablishmentsTableProps {
   authority?: string;
@@ -61,7 +54,7 @@ export const PaginatedEstablishmentsTable: React.FC<EstablishmentsTableProps> = 
     return <div>Error: {error.message}</div>;
   } else {
     return (
-      <div style={tableStyle}>
+      <div className={styles.tableStyle}>
         <h2>Food Hygiene Ratings</h2>
         <EstablishmentsTable establishments={establishments} loading={isLoading || isFetching} />
         <EstablishmentsTableNavigation

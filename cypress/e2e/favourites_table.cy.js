@@ -1,4 +1,6 @@
+// due to periods the ratings API gets slower
 Cypress.config('defaultCommandTimeout', 60000);
+
 describe('Favourite Table Tests', () => {
 
   it('adds an establishment to favourites from the homepage', () => {

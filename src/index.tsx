@@ -10,11 +10,7 @@ const queryClient = new QueryClient();
 
 ReactDOM.render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <FavouritesProvider>
-        <App />
-      </FavouritesProvider>
-    </QueryClientProvider>
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

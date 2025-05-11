@@ -3,167 +3,164 @@
 exports[`HomePage matches snapshot 1`] = `
 <div>
   <div
-    style="align-items: center; color: white; display: flex; flex-direction: column; height: 100vh;"
+    class="selectStyle"
   >
-    <header
-      style="width: 640px; height: 200px; background: transparent url(logo.svg) no-repeat center; background-size: contain; flex-shrink: 0; margin-bottom: 20px;"
-    />
-    <div
-      style="color: white; font-size: 20px; width: calc(50rem + 40px);"
+    <label
+      for="authoritiesDropDown"
+      style="font-weight: bold;"
     >
-      <label
-        for="authoritiesDropDown"
-        style="font-weight: bold;"
-      >
-        Authorities:
-      </label>
+      Authorities:
+    </label>
+    <div
+      class="css-b62m3t-container"
+      id="authoritiesDropDown"
+    >
+      <span
+        class="css-1f43avz-a11yText-A11yText"
+        id="react-select-2-live-region"
+      />
+      <span
+        aria-atomic="false"
+        aria-live="polite"
+        aria-relevant="additions text"
+        class="css-1f43avz-a11yText-A11yText"
+        role="log"
+      />
       <div
-        class="css-b62m3t-container"
-        id="authoritiesDropDown"
+        class="control css-13cymwt-control"
       >
-        <span
-          class="css-1f43avz-a11yText-A11yText"
-          id="react-select-2-live-region"
-        />
-        <span
-          aria-atomic="false"
-          aria-live="polite"
-          aria-relevant="additions text"
-          class="css-1f43avz-a11yText-A11yText"
-          role="log"
-        />
         <div
-          class="css-1asr2dn-control"
+          class="css-hlgwow"
         >
           <div
-            class="css-hlgwow"
+            class="placeholder css-1jqq78o-placeholder"
+            id="react-select-2-placeholder"
           >
-            <div
-              class="css-1550uzu-placeholder"
-              id="react-select-2-placeholder"
-            >
-              Search or select...
-            </div>
-            <div
-              class="css-19bb58m"
-              data-value=""
-            >
-              <input
-                aria-activedescendant=""
-                aria-autocomplete="list"
-                aria-describedby="react-select-2-placeholder"
-                aria-expanded="false"
-                aria-haspopup="true"
-                autocapitalize="none"
-                autocomplete="off"
-                autocorrect="off"
-                class=""
-                id="react-select-2-input"
-                role="combobox"
-                spellcheck="false"
-                style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
-                tabindex="0"
-                type="text"
-                value=""
-              />
-            </div>
+            Search or select...
           </div>
           <div
-            class="css-1wy0on6"
+            class="css-19bb58m"
+            data-value=""
           >
-            <div
-              aria-hidden="true"
-              class="css-pogzpp-loadingIndicator"
-            >
-              <span
-                class="css-1icxkl9-LoadingDot"
-              />
-              <span
-                class="css-1oazjx7-LoadingDot"
-              />
-              <span
-                class="css-1wonz24-LoadingDot"
-              />
-            </div>
-            <span
-              class="css-1u9des2-indicatorSeparator"
+            <input
+              aria-activedescendant=""
+              aria-autocomplete="list"
+              aria-describedby="react-select-2-placeholder"
+              aria-expanded="false"
+              aria-haspopup="true"
+              autocapitalize="none"
+              autocomplete="off"
+              autocorrect="off"
+              class=""
+              id="react-select-2-input"
+              role="combobox"
+              spellcheck="false"
+              style="opacity: 1; width: 100%; grid-area: 1 / 2; min-width: 2px; border: 0px; margin: 0px; outline: 0; padding: 0px;"
+              tabindex="0"
+              type="text"
+              value=""
             />
-            <div
+          </div>
+        </div>
+        <div
+          class="css-1wy0on6"
+        >
+          <div
+            aria-hidden="true"
+            class="css-pogzpp-loadingIndicator"
+          >
+            <span
+              class="css-1icxkl9-LoadingDot"
+            />
+            <span
+              class="css-1oazjx7-LoadingDot"
+            />
+            <span
+              class="css-1wonz24-LoadingDot"
+            />
+          </div>
+          <span
+            class="css-1u9des2-indicatorSeparator"
+          />
+          <div
+            aria-hidden="true"
+            class="css-1xc3v61-indicatorContainer"
+          >
+            <svg
               aria-hidden="true"
-              class="css-1xc3v61-indicatorContainer"
+              class="css-tj5bde-Svg"
+              focusable="false"
+              height="20"
+              viewBox="0 0 20 20"
+              width="20"
             >
-              <svg
-                aria-hidden="true"
-                class="css-tj5bde-Svg"
-                focusable="false"
-                height="20"
-                viewBox="0 0 20 20"
-                width="20"
-              >
-                <path
-                  d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
-                />
-              </svg>
-            </div>
+              <path
+                d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"
+              />
+            </svg>
           </div>
         </div>
       </div>
     </div>
-    <div
-      style="background: rgb(130, 199, 175); color: white; padding: 10px 20px; width: 50rem; height: 29rem;"
-    >
-      <h2>
-        Food Hygiene Ratings
-      </h2>
-      <table>
-        <tbody>
-          <tr>
-            <th
-              style="font-size: 20px; text-align: left; padding-bottom: 10px; padding-right: 30px;"
-            >
-              Fav
-            </th>
-            <th
-              style="font-size: 20px; text-align: left; padding-bottom: 10px; width: 37.5rem;"
-            >
-              Business Name
-            </th>
-            <th
-              style="font-size: 20px; text-align: left; padding-bottom: 10px;"
-            >
-              Rating Value
-            </th>
-          </tr>
-          <tr
-            style="font-size: 20px; height: 19.15rem;"
+  </div>
+  <div
+    class="tableStyle"
+  >
+    <h2>
+      Food Hygiene Ratings
+    </h2>
+    <table>
+      <thead>
+        <tr>
+          <th
+            class="headerStyle"
+            style="padding-right: 30px;"
           >
-            <td
-              colspan="3"
-              style="font-weight: bold; text-align: center;"
-            >
-              Loading...
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <nav>
-        <button
-          disabled=""
-          style="margin: 10px 5px;"
-          type="button"
+            Fav
+          </th>
+          <th
+            class="headerStyle"
+            style="width: 37.5rem;"
+          >
+            Business Name
+          </th>
+          <th
+            class="headerStyle"
+          >
+            Rating Value
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          style="font-size: 20px; height: 19.15rem;"
         >
-          -
-        </button>
-        1
-        <button
-          disabled=""
-          style="margin: 10px 5px;"
-          type="button"
-        >
-          +
-        </button>
-      </nav>
-    </div>
+          <td
+            colspan="3"
+            style="font-weight: bold; text-align: center;"
+          >
+            Loading...
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <nav>
+      <button
+        class="buttonStyle"
+        disabled=""
+        type="button"
+      >
+        -
+      </button>
+      1
+      <button
+        class="buttonStyle"
+        disabled=""
+        type="button"
+      >
+        +
+      </button>
+    </nav>
   </div>
 </div>
 `;

@@ -1,53 +1,12 @@
-import React, { useState, useMemo, useRef } from "react";
-import Select, { components, MenuListProps } from "react-select";
+import React, { useState, useMemo, useRef, useEffect } from "react";
+import Select from "react-select";
 import { useInfiniteQuery, useQuery } from 'react-query';
 import { getAuthorities, getAuthoritiesByName } from "../../api/ratingsAPI";
+import CustomMenuList from "./CustomMenuList";
+import { AuthoritiesDropdownContext } from "../../context/AuthoritiesDropDownContext";
+import styles from "./AuthoritiesDropDown.module.css";
 
-const selectStyle = {
-    color: 'white',
-    fontSize: '20px',
-    width: 'calc(50rem + 40px)',
-};
-const loadMoreStyle: React.CSSProperties = {
-    color: '#4CAF50',
-    cursor: 'pointer',
-    padding: '8px',
-    textAlign: 'center',
-};
-const dropDownStyle = {
-    control: (styles: any) => ({
-        ...styles,
-        backgroundColor: '#82C7AF',
-        border: '0',
-        borderRadius: '6px',
-        caretColor: 'white',
-        color: 'white',
-        fontSize: '20px',
-        margin: '10px 0 10px 0px',
-        padding: '5px 10px',
-    }),
-    menu: (styles: any) => ({
-        ...styles,
-        backgroundColor: 'white',
-        borderRadius: '6px',
-        boxShadow: '0 2px 12px rgba(0,0,0,0.1)',
-        padding: '10px',
-    }),
-    option: (styles: any, { isFocused, isSelected }: any) => ({
-        ...styles,
-        backgroundColor: isSelected ? '#4CAF50' : isFocused ? '#E8F5E9' : undefined,
-        color: isSelected ? 'white' : isFocused ? 'darkgreen' : 'black',
-        padding: '10px',
-    }),
-    singleValue: (styles: any) => ({
-        ...styles,
-        color: 'white',
-    }),
-    placeholder: (styles: any) => ({
-        ...styles,
-        color: 'white',
-    }),
-};
+const PAGE_SIZE = 10;
 
 interface AuthorityOptionType {
     label: string;
@@ -57,12 +16,21 @@ interface AuthoritiesDropDownProps {
     onChange: (value: string | null) => void;
 }
 
-const PAGE_SIZE = 10;
-
 export const AuthoritiesDropDown: React.FC<AuthoritiesDropDownProps> = ({ onChange }) => {
+
     const [inputValue, setInputValue] = useState("");
-    const menuRef = useRef<HTMLDivElement | null>(null);
+    
+    const [debouncedSearch, setDebouncedSearch] = useState("");
+
     const isSearchMode = inputValue.trim().length > 0;
+
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            setDebouncedSearch(inputValue);
+        }, 300);
+
+        return () => clearTimeout(timeoutId);
+    }, [inputValue]);
 
     const handleSelect = (option: AuthorityOptionType | null) => {
         onChange(option ? String(option.value) : null);
@@ -94,13 +62,13 @@ export const AuthoritiesDropDown: React.FC<AuthoritiesDropDownProps> = ({ onChan
         data: searchData,
         isLoading: isSearchLoading,
     } = useQuery(
-        ['dropdown-search', inputValue],
+        ['dropdown-search', debouncedSearch],
         async () => {
-            const results = await getAuthoritiesByName(inputValue);
+            const results = await getAuthoritiesByName(debouncedSearch);
             return results.authorities;
         },
         {
-            enabled: isSearchMode && inputValue.length > 0,
+            enabled: isSearchMode && debouncedSearch.length > 0,
             staleTime: Infinity,
             cacheTime: Infinity,
         }
@@ -123,38 +91,43 @@ export const AuthoritiesDropDown: React.FC<AuthoritiesDropDownProps> = ({ onChan
             fetchNextPage();
         }
     };
-    
-    // Custom dropdown with Load More
-    const MenuList = (props: MenuListProps<AuthorityOptionType, false>) => (
-        <components.MenuList {...props} innerRef={(ref) => (menuRef.current = ref)}>
-          {props.children}
-          {hasMore && (
-            <div
-              style={loadMoreStyle}
-              onClick={handleLoadMore}
-            >
-              {isFetchingNextPage ? 'Loading more...' : 'Load more'}
-            </div>
-          )}
-        </components.MenuList>
-    );
+    const menuRef = useRef<HTMLDivElement | null>(null);
 
+    // prevents the dropdown to be defined again every time this component re-renders
+    const MenuList = CustomMenuList;
+    
     return (
-        <div style={selectStyle}>
-            <label htmlFor="authoritiesDropDown" style={{fontWeight: 'bold'}}>Authorities:</label>
-            <Select<AuthorityOptionType, false>
-                components={{ MenuList }}
-                options={options}
-                onInputChange={(value: string) => {
-                    setInputValue(value);
-                }}
-                onChange={handleSelect}
-                isLoading={isPaginatedLoading || isSearchLoading}
-                placeholder="Search or select..."
-                isClearable
-                id="authoritiesDropDown"
-                styles={dropDownStyle}
-            />
-        </div>
+        <AuthoritiesDropdownContext.Provider
+            value={{
+                menuRef,
+                hasMore,
+                handleLoadMore,
+                isFetchingNextPage,
+            }}
+        >
+            <div className={styles.selectStyle}>
+                <label htmlFor="authoritiesDropDown" style={{fontWeight: 'bold'}}>Authorities:</label>
+                <Select<AuthorityOptionType, false>
+                    components={{ MenuList }}
+                    options={options}
+                    onInputChange={(value: string) => {
+                        setInputValue(value);
+                    }}
+                    onChange={handleSelect}
+                    isLoading={isPaginatedLoading || isSearchLoading}
+                    placeholder="Search or select..."
+                    isClearable
+                    id="authoritiesDropDown"
+                    classNames={{
+                        control: () => styles.control,
+                        menu: () => styles.menu,
+                        option: (state: any) => state.isFocused ? styles.optionFocused : 
+                            state.isSelected ? styles.optionSelected : styles.option,
+                        singleValue: () => styles.singleValue,
+                        placeholder: () => styles.placeholder,
+                    }}
+                />
+            </div>
+        </AuthoritiesDropdownContext.Provider>
     )
 };

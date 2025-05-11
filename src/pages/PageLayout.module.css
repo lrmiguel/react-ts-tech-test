@@ -1,0 +1,19 @@
+.layoutStyle {
+    align-items: center; 
+    color: white;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.logoStyle {
+  background: transparent url('../static/logo.svg') no-repeat center;
+  background-size: contain;
+  flex-shrink: 0;
+  height: 40vmin;
+  height: 200px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  pointer-events: none;
+  width: 640px;
+}

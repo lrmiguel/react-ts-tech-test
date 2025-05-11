@@ -2,31 +2,7 @@ import { useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { EstablishmentDetailType, getEstablishmentById } from "../api/ratingsAPI";
 import { useQuery } from "react-query";
-import PageLayout from "./PageLayout";
-
-const layoutStyle: React.CSSProperties = {
-    background: "#82C7AF",
-    borderRadius: "0 0 6px 6px",
-    display: "flex",
-    flexDirection: "column",
-    fontSize: "20px",
-    justifyContent: "space-between",
-    height: "25rem",
-    marginTop: "30px",
-    padding: "20px",
-    width: "30rem"
-};
-
-const buttonStyle: React.CSSProperties = {
-    backgroundColor: "#82C7AF",
-    border: "1px solid green",
-    borderRadius: "4px",
-    color: "white",
-    fontSize: "20px",
-    fontWeight: "bold",
-    padding: "5px",
-    width: "10rem",
-};
+import styles from "./EstablishmentDetailPage.module.css";
 
 const EstablishmentDetailPage = () => {
     const [error, setError] =
@@ -56,10 +32,12 @@ const EstablishmentDetailPage = () => {
     const establishment = data;
 
     if (isLoading) {
-        return <PageLayout><div>Loading...</div></PageLayout>;
+        return <div className={`${styles.layoutStyle} ${styles.loading}`}>
+            <strong>Loading...</strong>
+        </div>;
     }
     if (error) {
-        return <PageLayout><div>Error: {error?.message}</div></PageLayout>; 
+        return <div className={styles.layoutStyle}>Error: {error?.message}</div>; 
     }
 
     const formatUKAddress = (establishment: EstablishmentDetailType) => {
@@ -79,10 +57,10 @@ const EstablishmentDetailPage = () => {
     }
 
     return (!isLoading &&
-        (<PageLayout>
-            <div style={layoutStyle}>
+        (
+            <div className={styles.layoutStyle}>
                 {!!error && <div>{error}</div>}
-                <h2 style={{ textAlign: "center" }}>Establishment Details</h2>
+                <h2 style={{ textAlign: "center", marginBottom: "5px" }}>Establishment Details</h2>
                 <div style={{ flexGrow: 1 }}>
                     <h3>{establishment?.BusinessName}</h3>
                     <p><strong>Address:</strong> {formatUKAddress(establishment!)}</p>
@@ -90,10 +68,10 @@ const EstablishmentDetailPage = () => {
                     <p><strong>Date of Inspection:</strong> {formatDate(establishment!.RatingDate)}</p>
                 </div>
                 <div style={{textAlign: "center"}}>
-                    <button style={buttonStyle} onClick={() => history.push("/")}>Go back</button>
+                    <button className={styles.buttonStyle} onClick={() => history.push("/")}>Go back</button>
                 </div>
             </div>
-        </PageLayout>)
+        )
     );
 };
 export default EstablishmentDetailPage;
