@@ -31,15 +31,6 @@ const EstablishmentDetailPage = () => {
     );
     const establishment = data;
 
-    if (isLoading) {
-        return <div className={`${styles.layoutStyle} ${styles.loading}`}>
-            <strong>Loading...</strong>
-        </div>;
-    }
-    if (error) {
-        return <div className={styles.layoutStyle}>Error: {error?.message}</div>; 
-    }
-
     const formatUKAddress = (establishment: EstablishmentDetailType) => {
         const lines = [
           establishment.AddressLine1,
@@ -56,22 +47,29 @@ const EstablishmentDetailPage = () => {
         return utcDate.toLocaleDateString("en-GB");
     }
 
-    return (!isLoading &&
-        (
-            <div className={styles.layoutStyle}>
-                {!!error && <div>{error}</div>}
-                <h2 style={{ textAlign: "center", marginBottom: "5px" }}>Establishment Details</h2>
-                <div style={{ flexGrow: 1 }}>
-                    <h3>{establishment?.BusinessName}</h3>
-                    <p><strong>Address:</strong> {formatUKAddress(establishment!)}</p>
-                    <p><strong>Rating:</strong> {establishment?.RatingValue}</p>
-                    <p><strong>Date of Inspection:</strong> {formatDate(establishment!.RatingDate)}</p>
-                </div>
-                <div style={{textAlign: "center"}}>
-                    <button className={styles.buttonStyle} onClick={() => history.push("/")}>Go back</button>
-                </div>
+    if (isLoading) {
+        return <div className={`${styles.layoutStyle} ${styles.loading}`}>
+            <strong>Loading...</strong>
+        </div>;
+    }
+
+    if (error) {
+        return <div className={styles.layoutStyle}>Error: {error?.message}</div>;
+    }
+
+    return (
+        <div className={styles.layoutStyle}>
+            <h2 style={{ textAlign: "center", marginBottom: "5px" }}>Establishment Details</h2>
+            <div style={{ flexGrow: 1 }}>
+                <h3>{establishment?.BusinessName}</h3>
+                <p><strong>Address:</strong> {formatUKAddress(establishment!)}</p>
+                <p><strong>Rating:</strong> {establishment?.RatingValue}</p>
+                <p><strong>Date of Inspection:</strong> {formatDate(establishment!.RatingDate)}</p>
             </div>
-        )
+            <div style={{ textAlign: "center" }}>
+                <button className={styles.buttonStyle} onClick={() => history.push("/")}>Go back</button>
+            </div>
+        </div>
     );
 };
 export default EstablishmentDetailPage;

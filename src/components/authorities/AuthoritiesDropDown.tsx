@@ -118,16 +118,44 @@ export const AuthoritiesDropDown: React.FC<AuthoritiesDropDownProps> = ({ onChan
                     placeholder="Search or select..."
                     isClearable
                     id="authoritiesDropDown"
-                    classNames={{
-                        control: () => styles.control,
-                        menu: () => styles.menu,
-                        option: (state: any) => state.isFocused ? styles.optionFocused : 
-                            state.isSelected ? styles.optionSelected : styles.option,
-                        singleValue: () => styles.singleValue,
-                        placeholder: () => styles.placeholder,
-                    }}
+                    styles={dropDownStyle}
                 />
             </div>
         </AuthoritiesDropdownContext.Provider>
     )
+};
+
+const dropDownStyle = {
+    control: (styles: any) => ({
+        ...styles,
+        backgroundColor: '#82C7AF',
+        border: '0',
+        borderRadius: '6px',
+        caretColor: 'white',
+        color: 'white',
+        fontSize: '20px',
+        margin: '10px 0 10px 0px',
+        padding: '5px 10px',
+    }),
+    menu: (styles: any) => ({
+        ...styles,
+        backgroundColor: 'white',
+        borderRadius: '6px',
+        boxShadow: '0 2px 12px rgba(0,0,0,0.1)',
+        padding: '10px',
+    }),
+    option: (styles: any, { isFocused, isSelected }: any) => ({
+        ...styles,
+        backgroundColor: isSelected ? '#4CAF50' : isFocused ? '#E8F5E9' : undefined,
+        color: isSelected ? 'white' : isFocused ? 'darkgreen' : 'black',
+        padding: '10px',
+    }),
+    singleValue: (styles: any) => ({
+        ...styles,
+        color: 'white',
+    }),
+    placeholder: (styles: any) => ({
+        ...styles,
+        color: 'white',
+    }),
 };
