@@ -27,13 +27,13 @@ exports[`HomePage matches snapshot 1`] = `
         role="log"
       />
       <div
-        class="control css-13cymwt-control"
+        class="css-1asr2dn-control"
       >
         <div
           class="css-hlgwow"
         >
           <div
-            class="placeholder css-1jqq78o-placeholder"
+            class="css-1550uzu-placeholder"
             id="react-select-2-placeholder"
           >
             Search or select...
